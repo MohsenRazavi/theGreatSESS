@@ -1,5 +1,7 @@
 package Code;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
@@ -39,6 +41,11 @@ public class User {
             }
         }
         return tempId;
+    }
+
+    public void saveToFile(String fileName) throws IOException {
+        FileWriter fileWriter = new FileWriter(fileName, true);
+        fileWriter.write(this.username+"|"+this.password);
     }
 
     public Scanner getInput() {
