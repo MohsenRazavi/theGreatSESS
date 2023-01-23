@@ -35,7 +35,7 @@ public class Views {
 
         usernameLabel.setText("username :");
         passwordLabel.setText("password :");
-        sessLabel.setText("The Great SESS\nLogin");
+        sessLabel.setText("Login To The Great SESS");
         sessLabel.setFont(Font.font(35));
 
         usernameBox.getChildren().addAll(usernameLabel, usernameField);
@@ -264,5 +264,66 @@ public class Views {
             addCourseStage.setScene(addCourseScene);
             addCourseStage.show();
         }
+    static public void addTerm(){
+        Label titleLabel = new Label("Add new Term");
+        Label nameLabel = new Label("name :");
+        Label startDateLabel = new Label("Date of start term :");
+        Label endDateLabel = new Label("Date of end term :");
+        Label submitScoresDateLabel = new Label(("Date of submitting scores :"));
+        Label message = new Label();
+
+        Button addButton = new Button("Add");
+
+        TextField nameTextField = new TextField();
+
+        DatePicker startDatePicker = new DatePicker();
+        DatePicker endDatePicker = new DatePicker();
+        DatePicker submitScoresDatePicker = new DatePicker();
+
+        HBox nameBox = new HBox();
+        HBox startDateBox = new HBox();
+        HBox endDateBox = new HBox();
+        HBox submitScoresBox = new HBox();
+        VBox total = new VBox();
+
+        titleLabel.setFont(Font.font(35));
+
+        nameLabel.setAlignment(Pos.CENTER);
+        nameBox.getChildren().addAll(nameLabel, nameTextField);
+        nameBox.setSpacing(15);
+        nameBox.setAlignment(Pos.CENTER);
+
+        startDateLabel.setAlignment(Pos.CENTER);
+        startDateBox.getChildren().addAll(startDateLabel, startDatePicker);
+        startDateBox.setAlignment(Pos.CENTER);
+        startDateBox.setSpacing(15);
+
+        endDateLabel.setAlignment(Pos.CENTER);
+        endDateBox.getChildren().addAll(endDateLabel, endDatePicker);
+        endDateBox.setAlignment(Pos.CENTER);
+        endDateBox.setSpacing(15);
+
+        submitScoresDateLabel.setAlignment(Pos.CENTER);
+        submitScoresBox.getChildren().addAll(submitScoresDateLabel, submitScoresDatePicker);
+        submitScoresBox.setAlignment(Pos.CENTER);
+        submitScoresBox.setSpacing(15);
+
+        addButton.setOnAction(event -> {
+            Date startDate = new Date(startDatePicker.getValue().getDayOfMonth(), startDatePicker.getValue().getMonthValue(), startDatePicker.getValue().getYear());
+            Date endDate = new Date(endDatePicker.getValue().getDayOfMonth(), endDatePicker.getValue().getMonthValue(), endDatePicker.getValue().getYear());
+            Date submitScoresDate = new Date(submitScoresDatePicker.getValue().getDayOfMonth(), submitScoresDatePicker.getValue().getMonthValue(), submitScoresDatePicker.getValue().getYear());
+            Term tempTerm = new Term(nameTextField.getText(), submitScoresDate, startDate, endDate);
+            message.setAlignment(Pos.CENTER);
+            message.setText("Successful");
+            message.setTextFill(Color.rgb(0, 255, 0));
+        });
+        total.getChildren().addAll(titleLabel, nameBox, startDateBox, endDateBox, submitScoresBox, addButton, message);
+        total.setAlignment(Pos.CENTER);
+        total.setSpacing(20);
+        Scene addTermScene = new Scene(total, 1200, 700);
+        Stage addTermStage = new Stage();
+        addTermStage.setScene(addTermScene);
+        addTermStage.show();
+    }
     }
 }

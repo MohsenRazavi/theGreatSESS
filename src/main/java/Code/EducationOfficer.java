@@ -15,7 +15,10 @@ public class EducationOfficer extends User{
     public void saveToFile() throws IOException {
         super.saveToFile("education_officers.txt");
     }
-    public void addTerm(){}
+    public void addTerm(String name, Date submitScores, Date start, Date end){
+        Term tempTerm = new Term(name, submitScores, start, end);
+
+    }
     public void addTeacher(String username, String password) throws IOException {
         Teacher tempTeacher = new Teacher(username, password);
         tempTeacher.saveToFile();
