@@ -11,6 +11,7 @@ public class Authentication {
 
     public User login(String username, String password, String userType) throws FileNotFoundException {
         String fileName = null;
+        System.out.println(userType);
         if (userType.equals("Teacher"))
             fileName = "teachers.txt";
         else if (userType.equals("Student"))

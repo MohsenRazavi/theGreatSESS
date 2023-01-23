@@ -47,7 +47,7 @@ public class User {
         FileWriter fileWriter = new FileWriter(fileName, true);
         FileWriter userWriter = new FileWriter("users.txt", true);
         fileWriter.write(this.username+"|"+this.password);
-        userWriter.write(this.username+"|"+this.password+"|"+this.userType);
+        userWriter.write(this.username+"|"+this.password+"|"+this.userType+"|"+this.id);
 
     }
 

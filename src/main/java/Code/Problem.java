@@ -1,14 +1,19 @@
 package Code;
 
+import java.util.Random;
+
 public class Problem {
+    Random rand = new Random();
     private String question;
     private String solution;
     private String answer;
     private Exam exam;
+    private int id = rand.nextInt(100000);
 
+    public Problem() {
+    }
 
-    public Problem(){}
-    public Problem(String question, String solution, String answer){
+    public Problem(String question, String solution, String answer) {
         this.setQuestion(question);
         this.setAnswer(answer);
         this.setAnswer(answer);
@@ -22,6 +27,13 @@ public class Problem {
         this.exam = exam;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getQuestion() {
         return question;

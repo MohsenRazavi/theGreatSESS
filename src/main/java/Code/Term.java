@@ -1,15 +1,19 @@
 package Code;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Term {
+    Random rand = new Random();
     private String name;
     private Date submitScoresDate;
     private Date startDate;
     private Date endDate;
+    private int id = rand.nextInt(100000);
+
     private ArrayList<Course> courses;
-    private ArrayList<Teacher>teachers;
-    private ArrayList<Student>students;
+    private ArrayList<Teacher> teachers;
+    private ArrayList<Student> students;
 
     public Term() {
     }
@@ -19,6 +23,14 @@ public class Term {
         this.setSubmitScoresDate(submitScoresDate);
         this.setStartDate(startDate);
         this.setEndDate(endDate);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public ArrayList<Course> getCourses() {
