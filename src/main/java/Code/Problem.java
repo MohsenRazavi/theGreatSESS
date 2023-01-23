@@ -23,7 +23,7 @@ public class Problem {
     }
 
     public void saveToFile() throws IOException {
-        File file = new File("prblems.txt");
+        File file = new File("src/main/java/Code/problems.txt");
         FileWriter problemWriter = new FileWriter(file, true);
         problemWriter.write(this.question+"|"+this.solution+"|"+this.id+"\n");
     }

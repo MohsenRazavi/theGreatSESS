@@ -19,7 +19,7 @@ public class Exam {
     }
 
     public void saveToFile() throws IOException {
-        File examFile = new File("exams.txt");
+        File examFile = new File("src/main/java/Code/exams.txt");
         FileWriter examWriter = new FileWriter(examFile, true);
         examWriter.write(this.id+"|"+this.name+"|"+this.examDate.getDay()+"|"+this.examDate.getMonth()+"|"+this.examDate.getYear()+"\n");
         for (Problem p: problems){

@@ -30,7 +30,7 @@ public class Course {
     }
 
     public void saveToFile() throws IOException {
-        File file = new File("courses.txt");
+        File file = new File("src/main/java/Code/courses.txt");
         FileWriter fileWriter = new FileWriter(file, true);
         fileWriter.write(this.id+"|"+this.name+"|"+this.reference+"|"+this.syllabus+"|"+this.midExamDate.getDay()+"|"+this.midExamDate.getMonth()+"|"+this.midExamDate.getYear()+"|"+this.finalExamDate.getDay()+"|"+this.finalExamDate.getMonth()+"|"+this.finalExamDate.getYear()+"|"+this.teacher.getId()+"\n");
         for (Student s: students){

@@ -49,8 +49,8 @@ public class User {
     }
 
     public void saveToFile(String fileName) throws IOException {
-        FileWriter fileWriter = new FileWriter(fileName, true);
-        FileWriter userWriter = new FileWriter("users.txt", true);
+        FileWriter fileWriter = new FileWriter("src/main/java/Code/"+fileName, true);
+        FileWriter userWriter = new FileWriter("src/main/java/Code/"+"users.txt", true);
         fileWriter.write(this.username+"|"+this.password);
         userWriter.write(this.username+"|"+this.password+"|"+this.userType+"|"+this.id);
 
