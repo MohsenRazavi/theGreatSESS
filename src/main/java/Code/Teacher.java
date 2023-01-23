@@ -7,6 +7,7 @@ public class Teacher extends User{
     Teacher(){}
     Teacher(String username, String password){
         super(username, password);
+        this.userType = "Teacher";
     }
 
     public Course getCourse() {

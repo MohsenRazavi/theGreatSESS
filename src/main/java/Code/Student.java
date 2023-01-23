@@ -9,6 +9,7 @@ public class Student extends User{
     Student(){}
     Student(String username, String password){
         super(username, password);
+        this.userType = "Student";
     }
 
     public Term getActiveTerm() {

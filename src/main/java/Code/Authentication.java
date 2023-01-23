@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Authentication {
     File file;
     Scanner reader;
+
     public User login(String username, String password, String userType) throws FileNotFoundException {
         String fileName = null;
         if (userType.equals("Teacher"))
@@ -35,21 +36,36 @@ public class Authentication {
         return new User("not found", "not found");
     }
 
-    public User signup(String username, String password, String userType) throws IOException {
-        if (userType.equals("Teacher")) {
-            Teacher newUser = new Teacher(username, password);
-            newUser.saveToFile("teachers.txt");
-            return newUser;
-        } else if (userType.equals("Student")) {
-            Student newUser = new Student(username, password);
-            newUser.saveToFile("students.txt");
-            return newUser;
-        } else if (userType.equals("EducationOfficer")) {
-            EducationOfficer newUser = new EducationOfficer(username, password);
-            newUser.saveToFile("education_officer.txt");
-            return newUser;
-        } else {
-            return new User();
+    public User signup(String username, String password1, String password2, String userType) throws IOException {
+        Scanner userScanner = new Scanner("users.txt");
+        boolean isOk = true;
+        while (userScanner.hasNextLine()) {
+            String[] tempData = (userScanner.nextLine()).split("|");
+            if (username.equals(tempData[0])) {
+                isOk = false;
+            }
         }
+        if (!password1.equals(password2)) {
+            isOk = false;
+            return new User("password not match", "password not match");
+        }
+        if (isOk) {
+            if (userType.equals("Teacher")) {
+                Teacher newTeacher = new Teacher(username, password1);
+                newTeacher.saveToFile("teachers.txt");
+                return newTeacher;
+            } else if (userType.equals("Student")) {
+                Student newStudent = new Student(username, password1);
+                newStudent.saveToFile("students.txt");
+                return newStudent;
+            } else if (userType.equals("EducationOfficer")) {
+                EducationOfficer newEducationOfficer = new EducationOfficer(username, password1);
+                newEducationOfficer.saveToFile("education_officers.txt");
+                return newEducationOfficer;
+            } else {
+                return new User();
+            }
+        }
+        return new User("user exists", "user exists");
     }
 }

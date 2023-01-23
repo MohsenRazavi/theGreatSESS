@@ -13,7 +13,7 @@ public class User {
     private int id;
     private String username;
     private String password;
-    static private String userType;
+    static protected String userType = null;
 
     public User() {
     }
@@ -45,7 +45,10 @@ public class User {
 
     public void saveToFile(String fileName) throws IOException {
         FileWriter fileWriter = new FileWriter(fileName, true);
+        FileWriter userWriter = new FileWriter("users.txt", true);
         fileWriter.write(this.username+"|"+this.password);
+        userWriter.write(this.username+"|"+this.password+"|"+this.userType);
+
     }
 
     public Scanner getInput() {
