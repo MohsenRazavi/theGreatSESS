@@ -10,25 +10,25 @@ public class Authentication {
     Scanner reader;
 
     public User login(String username, String password, String userType) throws FileNotFoundException {
-        String fileName = null;
-        System.out.println(userType);
+        String fileName = "users.txt";
         if (userType.equals("Teacher"))
             fileName = "teachers.txt";
         else if (userType.equals("Student"))
             fileName = "students.txt";
-        else if (userType.equals("EducationOfficer"))
+        else if (userType.equals("Education Officer"))
             fileName = "education_officers.txt";
-        file = new File(fileName);
-        reader = new Scanner(file);
+        File file = new File(fileName);
+        Scanner reader = new Scanner(file);
         while (reader.hasNextLine()) {
             String[] data = (reader.nextLine()).split("|");
             if (username.equals(data[0])) {
                 if (password.equals(data[1])) {
+                    System.out.println("Login successful");
                     if (userType.equals("Teacher"))
                         return new Teacher(username, password);
                     else if (userType.equals("Student"))
                         return new Student(username, password);
-                    else if (userType.equals("EducationOfficer"))
+                    else if (userType.equals("EO"))
                         return new EducationOfficer(username, password);
                 }
                 return new User("wrong password", "wrong password");

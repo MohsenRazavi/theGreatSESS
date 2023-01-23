@@ -1,5 +1,8 @@
 package Code;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 public class Problem {
@@ -19,6 +22,11 @@ public class Problem {
         this.setAnswer(answer);
     }
 
+    public void saveToFile() throws IOException {
+        File file = new File("prblems.txt");
+        FileWriter problemWriter = new FileWriter(file, true);
+        problemWriter.write(this.question+"|"+this.solution+"|"+this.id+"\n");
+    }
     public Exam getExam() {
         return exam;
     }
