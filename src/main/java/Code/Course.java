@@ -28,6 +28,14 @@ public class Course {
         this.setMidExamDate(midExamDate);
         this.setFinalExamDate(finalExamDate);
     }
+    public Course( int id, String name, String reference, String syllabus, Date midExamDate, Date finalExamDate) {
+        this.setName(name);
+        this.setSyllabus(syllabus);
+        this.setReference(reference);
+        this.setMidExamDate(midExamDate);
+        this.setFinalExamDate(finalExamDate);
+        this.setId(id);
+    }
 
     public void saveToFile() throws IOException {
         File file = new File("src/main/java/Code/courses.txt");
