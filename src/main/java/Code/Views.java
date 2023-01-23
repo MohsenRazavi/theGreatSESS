@@ -214,17 +214,18 @@ public class Views {
                 Date midDate = new Date(midExamDatePicker.getValue().getDayOfMonth(), midExamDatePicker.getValue().getMonthValue(), midExamDatePicker.getValue().getYear());
                 Date finaleDate = new Date(finalExamDatePicker.getValue().getDayOfMonth(), finalExamDatePicker.getValue().getMonthValue(), finalExamDatePicker.getValue().getYear());
                 Course tempCourse = new Course(courseNameTextField.getText(), syllabusTextArea.getText(), referenceTextField.getText(), midDate, finaleDate);
-                try {
-                    tempCourse.saveToFile();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
                 for (Teacher t:App.teachers){
                     if(t.getUsername()==teacherMenu.getText()){
                         t.setCourse(tempCourse);
                         tempCourse.setTeacher(t);
                     }
                 }
+                try {
+                    tempCourse.saveToFile();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                App.courses.add(tempCourse);
             });
 
             totalBox.getChildren().addAll(titleLabel, courseNameHBox, teacherHBox, referenceHBox, syllabusHBox, midExamDateHBox, finalExamDateHBox, saveButton);

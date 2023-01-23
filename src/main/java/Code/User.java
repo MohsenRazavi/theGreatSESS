@@ -53,7 +53,7 @@ public class User {
         FileWriter userWriter = new FileWriter("src/main/java/Code/"+"users.txt", true);
         fileWriter.write(this.username+"|"+this.password);
         userWriter.write(this.username+"|"+this.password+"|"+this.userType+"|"+this.id);
-
+        userWriter.close();
     }
 
     public Scanner getInput() {

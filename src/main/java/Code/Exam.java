@@ -27,7 +27,7 @@ public class Exam {
         }
         examWriter.write("\n");
         examWriter.write("\\/\n");
-
+        examWriter.close();
     }
 
     public Date getExamDate() {

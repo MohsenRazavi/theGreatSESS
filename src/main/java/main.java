@@ -10,7 +10,7 @@ public class main extends Application {
     @Override
     public void start(Stage primaryStage) throws FileNotFoundException {
 //        mainApp.Login();
-        App.EducationOfficerApp.AddUser();
-//        App.EducationOfficerApp.addCourse();
+//        Views.EducationOfficerView.AddUser();
+        Views.EducationOfficerView.addCourse();
     }
 }

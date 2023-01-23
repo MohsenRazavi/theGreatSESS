@@ -28,7 +28,8 @@ public class Course {
         this.setMidExamDate(midExamDate);
         this.setFinalExamDate(finalExamDate);
     }
-    public Course( int id, String name, String reference, String syllabus, Date midExamDate, Date finalExamDate) {
+
+    public Course(int id, String name, String reference, String syllabus, Date midExamDate, Date finalExamDate) {
         this.setName(name);
         this.setSyllabus(syllabus);
         this.setReference(reference);
@@ -40,13 +41,16 @@ public class Course {
     public void saveToFile() throws IOException {
         File file = new File("src/main/java/Code/courses.txt");
         FileWriter fileWriter = new FileWriter(file, true);
-        fileWriter.write(this.id+"|"+this.name+"|"+this.reference+"|"+this.syllabus+"|"+this.midExamDate.getDay()+"|"+this.midExamDate.getMonth()+"|"+this.midExamDate.getYear()+"|"+this.finalExamDate.getDay()+"|"+this.finalExamDate.getMonth()+"|"+this.finalExamDate.getYear()+"|"+this.teacher.getId()+"\n");
-        for (Student s: students){
-            fileWriter.write(s.getId()+"|");
-        }
+        fileWriter.write(this.id + "|" + this.name + "|" + this.reference + "|" + this.syllabus + "|" + this.midExamDate.getDay() + "|" + this.midExamDate.getMonth() + "|" + this.midExamDate.getYear() + "|" + this.finalExamDate.getDay() + "|" + this.finalExamDate.getMonth() + "|" + this.finalExamDate.getYear() + "|" + this.teacher.getId() + "\n");
+        if (students != null)
+            for (Student s : students) {
+                fileWriter.write(s.getId() + "|");
+            }
         fileWriter.write("\n");
         fileWriter.write("\\/\n");
+        fileWriter.close();
     }
+
     public int getId() {
         return id;
     }

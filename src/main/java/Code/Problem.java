@@ -26,6 +26,7 @@ public class Problem {
         File file = new File("src/main/java/Code/problems.txt");
         FileWriter problemWriter = new FileWriter(file, true);
         problemWriter.write(this.question+"|"+this.solution+"|"+this.id+"\n");
+        problemWriter.close();
     }
     public Exam getExam() {
         return exam;
