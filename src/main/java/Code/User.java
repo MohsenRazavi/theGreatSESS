@@ -23,6 +23,11 @@ public class User {
         this.setPassword(password);
         this.setId(_findId());
     }
+    public User(String username, String password, int id) {
+        this.setUsername(username);
+        this.setPassword(password);
+        this.setId(id);
+    }
 
     public int _findId() {
         int tempId = rand.nextInt(1000);
@@ -90,4 +95,5 @@ public class User {
     public static void setUserType(String userType) {
         User.userType = userType;
     }
+
 }

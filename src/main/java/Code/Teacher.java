@@ -1,5 +1,7 @@
 package Code;
 
+import java.io.IOException;
+
 public class Teacher extends User{
     private Course course;
     private Term activeTerm;
@@ -8,6 +10,13 @@ public class Teacher extends User{
     Teacher(String username, String password){
         super(username, password);
         this.userType = "Teacher";
+    }
+    Teacher(String username, String password, int id){
+        super(username, password, id);
+        this.userType = "Teacher";
+    }
+    public void saveToFile() throws IOException {
+        super.saveToFile("teachers.txt");
     }
 
     public Course getCourse() {

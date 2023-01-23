@@ -1,5 +1,6 @@
 package Code;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Student extends User{
@@ -10,6 +11,13 @@ public class Student extends User{
     Student(String username, String password){
         super(username, password);
         this.userType = "Student";
+    }
+    Student(String username, String password, int id){
+        super(username, password, id);
+        this.userType = "Student";
+    }
+    public void saveToFile() throws IOException {
+        super.saveToFile("students.txt");
     }
 
     public Term getActiveTerm() {
