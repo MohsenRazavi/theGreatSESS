@@ -1,0 +1,7 @@
+ali|ali|Student|242
+mohammad|m67|Teacher|263
+jafar|123|Student|737
+hasan|1234|Teacher|143
+nader|nn|Teacher|857
+taha|tt|Student|83
+reza|rt|Student|482

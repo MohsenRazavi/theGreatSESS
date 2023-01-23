@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -13,6 +14,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Views {
@@ -93,6 +95,7 @@ public class Views {
             Label password1Label = new Label();
             Label password2Label = new Label();
             Label titleLabel = new Label();
+            Label messageLabel = new Label();
             TextField usernameField = new TextField();
             PasswordField password1Field = new PasswordField();
             PasswordField password2Field = new PasswordField();
@@ -106,6 +109,8 @@ public class Views {
             typeLabel.setText("user type :");
             titleLabel.setText("Add New User");
             titleLabel.setFont(Font.font(35));
+            messageLabel.setTextFill(Color.rgb(255, 0, 0));
+            messageLabel.setAlignment(Pos.CENTER);
 
 
             usernameBox.getChildren().addAll(usernameLabel, usernameField);
@@ -138,8 +143,29 @@ public class Views {
 
             signupButton.setText("Add");
             signupButton.setAlignment(Pos.CENTER);
+            signupButton.setOnAction(event -> {
+                App.update();
+                try {
+                    User u = App.auth.signup(usernameField.getText(), password1Field.getText(), password2Field.getText(), userTypeBox.getText());
+                    if (u.getUsername().equals("password not match") && u.getPassword().equals("password not match")){
+                        messageLabel.setTextFill(Color.rgb(255, 0, 0));
+                        messageLabel.setText("Passwords not match.");
+                    }
+                    else if (u.getUsername().equals("user exists") && u.getPassword().equals("user exists")){
+                        messageLabel.setTextFill(Color.rgb(255, 0, 0));
+                        messageLabel.setText("User with this username exists.");
+                    }else{
+                        messageLabel.setText("Successful !");
+                        messageLabel.setTextFill(Color.rgb(0, 255, 0));
+                    }
 
-            formBox.getChildren().addAll(titleLabel, usernameBox, passwordBox, typeBox, signupButton);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            });
+
+            formBox.getChildren().addAll(titleLabel, usernameBox, passwordBox, typeBox, signupButton, messageLabel);
             formBox.setAlignment(Pos.CENTER);
             formBox.setSpacing(20);
             Scene signupScene = new Scene(formBox, 1200, 700);
@@ -215,7 +241,7 @@ public class Views {
                 Date finaleDate = new Date(finalExamDatePicker.getValue().getDayOfMonth(), finalExamDatePicker.getValue().getMonthValue(), finalExamDatePicker.getValue().getYear());
                 Course tempCourse = new Course(courseNameTextField.getText(), syllabusTextArea.getText(), referenceTextField.getText(), midDate, finaleDate);
                 for (Teacher t:App.teachers){
-                    if(t.getUsername()==teacherMenu.getText()){
+                    if(Objects.equals(t.getUsername(), teacherMenu.getText())){
                         t.setCourse(tempCourse);
                         tempCourse.setTeacher(t);
                     }

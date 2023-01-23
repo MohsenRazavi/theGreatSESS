@@ -23,6 +23,7 @@ public class User {
         this.setPassword(password);
         this.setId(_findId());
     }
+
     public User(String username, String password, int id) {
         this.setUsername(username);
         this.setPassword(password);
@@ -33,27 +34,30 @@ public class User {
         int tempId = rand.nextInt(1000);
         boolean c = true;
         boolean isOk = true;
-        while (c) {
-            for (int id : ids) {
-                if (tempId == id) {
-                    tempId = rand.nextInt(1000);
-                    isOk = false;
-                    break;
+        if (ids != null) {
+            while (c) {
+                for (int id : ids) {
+                    if (tempId == id) {
+                        tempId = rand.nextInt(1000);
+                        isOk = false;
+                        break;
+                    }
                 }
-            }
-            if (isOk) {
-                c = false;
+                if (isOk) {
+                    c = false;
+                }
             }
         }
         return tempId;
     }
 
     public void saveToFile(String fileName) throws IOException {
-        FileWriter fileWriter = new FileWriter("src/main/java/Code/"+fileName, true);
-        FileWriter userWriter = new FileWriter("src/main/java/Code/"+"users.txt", true);
-        fileWriter.write(this.username+"|"+this.password);
-        userWriter.write(this.username+"|"+this.password+"|"+this.userType+"|"+this.id);
+        FileWriter fileWriter = new FileWriter("src/main/java/Code/" + fileName, true);
+        FileWriter userWriter = new FileWriter("src/main/java/Code/" + "users.txt", true);
+        fileWriter.write(this.username + "|" + this.password+"|"+this.id+"\n");
+        userWriter.write(this.username + "|" + this.password + "|" + this.userType + "|" + this.id+"\n");
         userWriter.close();
+        fileWriter.close();
     }
 
     public Scanner getInput() {

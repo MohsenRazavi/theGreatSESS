@@ -10,17 +10,17 @@ public class Authentication {
     Scanner reader;
 
     public User login(String username, String password, String userType) throws FileNotFoundException {
-        String fileName = "users.txt";
+        String fileName = "src/main/java/Code/users.txt";
         if (userType.equals("Teacher"))
-            fileName = "teachers.txt";
+            fileName = "src/main/java/Code/teachers.txt";
         else if (userType.equals("Student"))
-            fileName = "students.txt";
+            fileName = "src/main/java/Code/students.txt";
         else if (userType.equals("Education Officer"))
-            fileName = "education_officers.txt";
+            fileName = "src/main/java/Code/education_officers.txt";
         File file = new File(fileName);
         Scanner reader = new Scanner(file);
         while (reader.hasNextLine()) {
-            String[] data = (reader.nextLine()).split("|");
+            String[] data = (reader.nextLine()).split("\\|");
             if (username.equals(data[0])) {
                 if (password.equals(data[1])) {
                     System.out.println("Login successful");
@@ -38,10 +38,11 @@ public class Authentication {
     }
 
     public User signup(String username, String password1, String password2, String userType) throws IOException {
-        Scanner userScanner = new Scanner("users.txt");
+        File userFile = new File("src/main/java/Code/users.txt");
+        Scanner userScanner = new Scanner(userFile);
         boolean isOk = true;
         while (userScanner.hasNextLine()) {
-            String[] tempData = (userScanner.nextLine()).split("|");
+            String[] tempData = (userScanner.nextLine()).split("\\|");
             if (username.equals(tempData[0])) {
                 isOk = false;
             }
@@ -59,7 +60,7 @@ public class Authentication {
                 Student newStudent = new Student(username, password1);
                 newStudent.saveToFile("students.txt");
                 return newStudent;
-            } else if (userType.equals("EducationOfficer")) {
+            } else if (userType.equals("Education Officer")) {
                 EducationOfficer newEducationOfficer = new EducationOfficer(username, password1);
                 newEducationOfficer.saveToFile("education_officers.txt");
                 return newEducationOfficer;
